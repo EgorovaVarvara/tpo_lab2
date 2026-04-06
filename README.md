@@ -5,10 +5,12 @@
 
 ## Задание:
 Провести интеграционное тестирование программы, осуществляющей вычисление системы функций (в соответствии с вариантом).
+
+
 $$
 \begin{cases}
-\left(cos(x)^2 - cos(x)\right) \cdot sec(x) + tan(x) + \left(\frac{sec(x) - cot(x)}{sin(x)}\right)^3 \text{if } x \leq 0 \\
-\left(\left(\frac{\log{2}(x) - \log{5}(x)}{\log{5}(x)} + 2\ln(x)\right) \cdot \log{10}(x)\right)^3 \text{if } x >s 0
+\left(cos(x)^2 - cos(x)\right) \cdot sec(x) + tan(x) + \left(\frac{sec(x) - cot(x)}{sin(x)}\right)^3 & \text{if } x \leq 0 \\
+\left(\left(\frac{\log{2}(x) - \log{5}(x)}{\log{5}(x)} + 2\ln(x)\right) \cdot \log{10}(x)\right)^3 & \text{if } x > 0
 \end{cases}
 $$
 
