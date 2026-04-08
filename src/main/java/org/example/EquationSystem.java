@@ -35,8 +35,9 @@ public class EquationSystem extends AbstractFunction {
         isValid(x, eps);
 
         try{
+            if (x == 1) throw new ArithmeticException("there is division by 0 if x = 1");
             if (x <= 0){
-                return (Math.pow(c(cos, x, eps), 2) + c(cos, x, eps)) * c(sec, x, eps)
+                return (Math.pow(c(cos, x, eps), 2) - c(cos, x, eps)) * c(sec, x, eps)
                         + c(tan, x, eps)
                         + Math.pow((c(sec, x, eps) - c(cot, x, eps)) / c(sin, x, eps), 3);
             } else {
