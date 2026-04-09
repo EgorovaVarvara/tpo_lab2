@@ -7,28 +7,39 @@ import org.example.trigonomethric.*;
 
 public class EquationSystem extends AbstractFunction {
 
-    private final Sinus sin;
-    private final Cosine cos;
-    private final Tangent tan;
-    private final Cotangent cot;
-    private final Secant sec;
-    private final NatLog LogN;
-    private final BaseNLog Log2;
-    private final BaseNLog Log5;
-    private final BaseNLog Log10;
-
-    public EquationSystem(){
+    private final AbstractFunction sinus;
+    private final AbstractFunction cosinus;
+    private final AbstractFunction tangent;
+    private final AbstractFunction cotangent;
+    private final AbstractFunction secant;
+    private final AbstractFunction natLog;
+    private final AbstractFunction log2;
+    private final AbstractFunction log5;
+    private final AbstractFunction log10;
+    public EquationSystem(
+            AbstractFunction sin,
+            AbstractFunction cos,
+            AbstractFunction sec,
+            AbstractFunction tan,
+            AbstractFunction cot,
+            AbstractFunction ln,
+            AbstractFunction log2,
+            AbstractFunction log5,
+            AbstractFunction log10
+    ) {
         super();
-        sin = new Sinus();
-        cos = new Cosine(sin);
-        tan = new Tangent(sin, cos);
-        cot = new Cotangent(sin, cos);
-        sec = new Secant(cos);
-        LogN = new NatLog();
-        Log2 = new BaseNLog(2, LogN);
-        Log5 = new BaseNLog(5, LogN);
-        Log10 = new BaseNLog(10, LogN);
+        this.sinus = sin;
+        this.cosinus = cos;
+        this.secant = sec;
+        this.tangent = tan;
+        this.cotangent = cot;
+        this.natLog = ln;
+        this.log2 = log2;
+        this.log5 = log5;
+        this.log10 = log10;
     }
+
+
 
     @Override
     public Double calculate(Double x, Double eps) throws ArithmeticException{
@@ -37,12 +48,12 @@ public class EquationSystem extends AbstractFunction {
         try{
             if (x == 1) throw new ArithmeticException("there is division by 0 if x = 1");
             if (x <= 0){
-                return (Math.pow(c(cos, x, eps), 2) - c(cos, x, eps)) * c(sec, x, eps)
-                        + c(tan, x, eps)
-                        + Math.pow((c(sec, x, eps) - c(cot, x, eps)) / c(sin, x, eps), 3);
+                return (Math.pow(c(cosinus, x, eps), 2) - c(cosinus, x, eps)) * c(secant, x, eps)
+                        + c(tangent, x, eps)
+                        + Math.pow((c(secant, x, eps) - c(cotangent, x, eps)) / c(sinus, x, eps), 3);
             } else {
-                return Math.pow(((c(Log2, x, eps) - c(Log5, x, eps))/c(Log5, x, eps) +
-                        2 * c(LogN, x, eps)) * c(Log10, x, eps), 3);
+                return Math.pow(((c(log2, x, eps) - c(log5, x, eps))/c(log5, x, eps) +
+                        2 * c(natLog, x, eps)) * c(log10, x, eps), 3);
             }
         } catch (ArithmeticException e){
             throw new ArithmeticException("Function is undefined because " + e.getMessage());
