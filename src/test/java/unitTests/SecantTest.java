@@ -1,5 +1,6 @@
 package unitTests;
 import org.example.trigonomethric.Secant;
+import org.junit.jupiter.api.MethodDescriptor;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,16 +26,19 @@ class SecantTest {
 
     @Test
     void periodicityTest() {
-        assertEquals(
-                sec.calculate(Math.PI / 6, EPS),
-                sec.calculate(Math.PI / 6 + 2 * Math.PI, EPS),
-                1e-6
-        );
+        for (int i = -10; i <= 10; i++){
+            assertEquals(sec.calculate(Math.PI / 6 + i * Math.PI, EPS),
+                    sec.calculate(Math.PI / 6 + (i + 2) * Math.PI, EPS),
+                    1e-6);
+        }
     }
 
     @Test
     void wrongInputTest() {
-        assertThrows(ArithmeticException.class,
-                () -> sec.calculate(Math.PI / 2, EPS));
+        for (int i = -10; i <= 10; i++) {
+            int mult = i;
+            assertThrows(ArithmeticException.class,
+                    () -> sec.calculate((2 * mult - 1) * Math.PI / 2, EPS));
+        }
     }
 }

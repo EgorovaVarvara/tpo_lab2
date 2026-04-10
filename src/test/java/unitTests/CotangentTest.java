@@ -20,17 +20,22 @@ class CotangentTest {
 
     @Test
     void periodicityTest() {
-        assertEquals(
-                cot.calculate(Math.PI / 3, EPS),
-                cot.calculate(Math.PI / 3 + Math.PI, EPS),
-                1e-6
-        );
+        for (int i = -10; i <= 10; i++) {
+            assertEquals(
+                    cot.calculate(Math.PI / 3 + i * Math.PI, EPS),
+                    cot.calculate(Math.PI / 3 + (i + 1) * Math.PI, EPS),
+                    1e-6
+            );
+        }
     }
 
     @Test
     void zeroInputTest() {
-        assertThrows(ArithmeticException.class,
-                () -> cot.calculate(0.0, EPS));
+        for (int i = -10; i <= 10; i ++) {
+            int mult = i;
+            assertThrows(ArithmeticException.class,
+                    () -> cot.calculate(mult * Math.PI, EPS));
+        }
     }
 
     @Test

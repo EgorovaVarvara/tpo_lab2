@@ -39,14 +39,20 @@ class BaseLogTest {
     void shouldThrowForNegativeX() {
         BaseNLog log2 = new BaseNLog(2);
 
-        assertThrows(ArithmeticException.class,
-                () -> log2.calculate(-1.0, EPS));
+        for (double i = -10.0; i < 0; i ++) {
+            double x = i;
+            assertThrows(ArithmeticException.class,
+                    () -> log2.calculate(x, EPS));
+        }
     }
 
     @Test
     void shouldThrowForBaseOne() {
         BaseNLog log1 = new BaseNLog(1);
-        assertThrows(ArithmeticException.class,
-                () -> log1.calculate(5.0, EPS));
+        for (double i = -10.0; i <= 10; i ++) {
+            double x = i;
+            assertThrows(ArithmeticException.class,
+                    () -> log1.calculate(x, EPS));
+        }
     }
 }

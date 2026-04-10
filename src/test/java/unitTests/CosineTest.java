@@ -31,11 +31,13 @@ class CosineTest {
 
     @Test
     void periodicityTest() {
-        assertEquals(
-                cos.calculate(Math.PI / 4, EPS),
-                cos.calculate(Math.PI / 4 + 2 * Math.PI, EPS),
-                1e-6
-        );
+        for (int i = -10; i <= 10; i ++) {
+            assertEquals(
+                    cos.calculate(Math.PI / 4 + (2 * i + 2) * Math.PI, EPS),
+                    cos.calculate(Math.PI / 4 + 2 * i * Math.PI, EPS),
+                    1e-6
+            );
+        }
     }
 
     @Test

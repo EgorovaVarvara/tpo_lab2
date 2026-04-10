@@ -10,31 +10,42 @@ class TangentTest {
 
     @Test
     void zeroInputTest() {
-        assertEquals(0.0, tan.calculate(0.0, EPS), 1e-6);
+        for (int i = -10; i <= 10; i++) {
+            assertEquals(0.0, tan.calculate(i * Math.PI, EPS), 1e-6);
+        }
     }
 
     @Test
     void piDiv4InputTest() {
-        assertEquals(1.0, tan.calculate(Math.PI / 4, EPS), 1e-6);
+        for (int i = -10; i <= 10; i ++) {
+            assertEquals(1.0, tan.calculate(Math.PI / 4 + i * Math.PI, EPS), 1e-6);
+        }
     }
 
     @Test
     void minusPiDiv4InputTest() {
-        assertEquals(-1.0, tan.calculate(-Math.PI / 4, EPS), 1e-6);
+        for (int i = -10; i <= 10; i ++) {
+            assertEquals(-1.0, tan.calculate(-Math.PI / 4 + i * Math.PI, EPS), 1e-6);
+        }
     }
 
     @Test
     void periodicityTest() {
-        assertEquals(
-                tan.calculate(Math.PI / 6, EPS),
-                tan.calculate(Math.PI / 6 + Math.PI, EPS),
-                1e-6
-        );
+        for (int i = -10; i <= 10; i ++) {
+            assertEquals(
+                    tan.calculate(Math.PI / 6 + i * Math.PI, EPS),
+                    tan.calculate(Math.PI / 6 + (i + 1) * Math.PI, EPS),
+                    1e-6
+            );
+        }
     }
 
     @Test
     void wrongInputTest() {
-        assertThrows(ArithmeticException.class,
-                () -> tan.calculate(Math.PI / 2, EPS));
+        for (int i = -10; i <= 10; i ++) {
+            int mult = i;
+            assertThrows(ArithmeticException.class,
+                    () -> tan.calculate((2 * mult + 1) * Math.PI / 2, EPS));
+        }
     }
 }

@@ -41,7 +41,10 @@ class NatLogTest {
 
     @Test
     void negativeInputTest() {
-        assertThrows(ArithmeticException.class,
-                () -> ln.calculate(-1.0, EPS));
+        for (double i = -10.0; i < 0; i ++) {
+            double x = i;
+            assertThrows(ArithmeticException.class,
+                    () -> ln.calculate(x, EPS));
+        }
     }
 }
