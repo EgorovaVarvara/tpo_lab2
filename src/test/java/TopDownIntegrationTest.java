@@ -56,7 +56,7 @@ class TopDownIntegrationTest {
     }
 
     @Test
-    void stage2_realSin() throws Exception {
+    void stage1_realSin() throws Exception {
         Modules m = stubs();
 
         AbstractFunction sin = new Sinus();
@@ -65,6 +65,126 @@ class TopDownIntegrationTest {
                 new EquationSystem(
                         sin, m.cos, m.sec, m.tan, m.cot,
                         m.ln, m.log2, m.log5, m.log10
+                ),
+                NEGATIVE_BRANCH_POINTS
+        );
+    }
+
+    @Test
+    void stage12_realCos() throws Exception {
+        Modules m = stubs();
+
+        AbstractFunction cos = new Cosine();
+
+        assertBranch(
+                new EquationSystem(
+                        m.sin, cos, m.sec, m.tan, m.cot,
+                        m.ln, m.log2, m.log5, m.log10
+                ),
+                NEGATIVE_BRANCH_POINTS
+        );
+    }
+
+    @Test
+    void stage13_realSec() throws Exception {
+        Modules m = stubs();
+
+        AbstractFunction sec = new Secant();
+
+        assertBranch(
+                new EquationSystem(
+                        m.sin, m.cos, sec, m.tan, m.cot,
+                        m.ln, m.log2, m.log5, m.log10
+                ),
+                NEGATIVE_BRANCH_POINTS
+        );
+    }
+
+    @Test
+    void stage14_realTan() throws Exception {
+        Modules m = stubs();
+
+        AbstractFunction tan = new Tangent();
+
+        assertBranch(
+                new EquationSystem(
+                        m.sin, m.cos, m.sec, tan, m.cot,
+                        m.ln, m.log2, m.log5, m.log10
+                ),
+                NEGATIVE_BRANCH_POINTS
+        );
+    }
+
+    @Test
+    void stage15_realCot() throws Exception {
+        Modules m = stubs();
+
+        AbstractFunction cot = new Cotangent();
+
+        assertBranch(
+                new EquationSystem(
+                        m.sin, m.cos, m.sec, m.tan, cot,
+                        m.ln, m.log2, m.log5, m.log10
+                ),
+                NEGATIVE_BRANCH_POINTS
+        );
+    }
+
+    @Test
+    void stage16_realLn() throws Exception {
+        Modules m = stubs();
+
+        AbstractFunction ln = new NatLog();
+
+        assertBranch(
+                new EquationSystem(
+                        m.sin, m.cos, m.sec, m.tan, m.cot,
+                        ln, m.log2, m.log5, m.log10
+                ),
+                NEGATIVE_BRANCH_POINTS
+        );
+    }
+
+    @Test
+    void stage17_realLog2() throws Exception {
+        Modules m = stubs();
+
+        AbstractFunction log2 = new BaseNLog(2);
+
+        assertBranch(
+                new EquationSystem(
+                        m.sin, m.cos, m.sec, m.tan, m.cot,
+                        m.ln, log2, m.log5, m.log10
+                ),
+                NEGATIVE_BRANCH_POINTS
+        );
+    }
+
+    @Test
+    void stage18_realLog5() throws Exception {
+        Modules m = stubs();
+
+        AbstractFunction log5 = new BaseNLog(5);
+
+        assertBranch(
+                new EquationSystem(
+                        m.sin, m.cos, m.sec, m.tan, m.cot,
+                        m.ln, m.log2, log5, m.log10
+                ),
+                NEGATIVE_BRANCH_POINTS
+        );
+    }
+
+    @Test
+    void stage19_realLog10() throws Exception {
+        Modules m = stubs();
+
+        AbstractFunction log10 = new BaseNLog(10);
+
+        assertBranch(
+                new EquationSystem(
+                        m.sin, m.cos, m.sec, m.tan, m.cot,
+                        m.ln, m.log2, m.log5, log10
                 ),
                 NEGATIVE_BRANCH_POINTS
         );
