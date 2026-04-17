@@ -51,7 +51,7 @@ public class CSVWriter {
                 try{
                     Double y = fun.calculate(i, eps);
                     if (y != null){
-                        writer.write(format("%f;%f%n", i, y));
+                        writer.write(String.format(java.util.Locale.US, "%f;%f%n", i, y));
                     }else{
                         writer.newLine();
                     }

@@ -15,6 +15,7 @@ dependencies {
     testImplementation("org.mockito:mockito-junit-jupiter:5.14.2")
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation("org.jfree:jfreechart:1.5.5")
 }
 
 tasks.test {

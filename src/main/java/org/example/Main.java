@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.csvUtil.CSVFunctionGraph;
 import org.example.csvUtil.CSVWriter;
 import org.example.logarithmic.BaseNLog;
 import org.example.logarithmic.NatLog;
@@ -23,15 +24,23 @@ public class Main {
                 new BaseNLog(2, ln),
                 new BaseNLog(5, ln),
                 new BaseNLog(10, ln));
-        Double x = 0.1;
-        Double x2 = 1.0;
+        Double x = - 100.0;
+        Double x2 = 100.0;
         Double eps = 0.00001;
-        eq.calculate(x, eps);
+//        eq.calculate(x, eps);
 //        System.out.println(new BaseNLog(2, ln).calculate(0.1,  0.00001));
-        System.out.println(eq.calculate(x, eps));
+//        System.out.println(eq.calculate(x, eps));
+//
+//        // Пример использования врайтера
+//        CSVWriter writer = new CSVWriter(eq);
+//        writer.write(x, x2, 0.1, eps);
 
-        // Пример использования врайтера
-        CSVWriter writer = new CSVWriter(eq);
-        writer.write(x, x2, 0.1, eps);
+
+//        CSVWriter writer = new CSVWriter(eq);
+//        writer.write(x, x2, 0.1, eps);
+
+        String path = System.getProperty("user.dir") + "/test/EquationSystem.csv";
+
+        CSVFunctionGraph.displayChart(path);
     }
 }
